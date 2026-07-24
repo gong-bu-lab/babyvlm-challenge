@@ -5,24 +5,674 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BabyVLM Challenge</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: sans-serif; }
+    /* ── Reset & Base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1a2744;
+      --blue:    #2563eb;
+      --blue-lt: #eff6ff;
+      --teal:    #0d9488;
+      --gray-1:  #f8fafc;
+      --gray-2:  #e2e8f0;
+      --gray-3:  #94a3b8;
+      --gray-4:  #475569;
+      --text:    #1e293b;
+      --radius:  10px;
+      --shadow:  0 1px 4px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+      --nav-h:   60px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background: #fff;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ──────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      gap: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      white-space: nowrap;
+      margin-right: auto;
+    }
+
+    nav a {
+      color: rgba(255,255,255,.8);
+      font-size: .875rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color .15s;
+    }
+    nav a:hover { color: #fff; text-decoration: none; }
+
+    /* ── Hero ─────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 60%, #1d4ed8 100%);
+      color: #fff;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .25rem .85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: .75rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.8);
+      max-width: 640px;
+      margin: 0 auto 2.25rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .65rem 1.4rem;
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-weight: 600;
+      transition: filter .15s, transform .1s;
+      cursor: pointer;
+    }
+    .btn:hover { filter: brightness(1.1); transform: translateY(-1px); text-decoration: none; }
+
+    .btn-primary { background: #fff; color: var(--navy); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6); }
+
+    /* ── Layout ───────────────────────────────────────────────────── */
+    .page { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--gray-2);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .4rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -.015em;
+      margin-bottom: 1.25rem;
+      color: var(--navy);
+    }
+
+    p { margin-bottom: .9rem; color: var(--gray-4); }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Overview ─────────────────────────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .overview-card {
+      background: var(--gray-1);
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .overview-card .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+    }
+
+    .overview-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .35rem;
+    }
+
+    .overview-card p { font-size: .875rem; margin: 0; }
+
+    /* ── Dates ────────────────────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      margin-top: 1.5rem;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--gray-2);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gray-2);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--gray-3);
+    }
+
+    .timeline-item.done::before { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+    .timeline-item.active::before { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+
+    .timeline-date {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gray-3);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .15rem;
+    }
+
+    .timeline-item.active .timeline-date { color: var(--blue); }
+
+    .timeline-title {
+      font-weight: 600;
+      font-size: .975rem;
+      color: var(--navy);
+    }
+
+    .timeline-desc {
+      font-size: .875rem;
+      color: var(--gray-4);
+      margin: .15rem 0 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: .15rem .5rem;
+      border-radius: 999px;
+      vertical-align: middle;
+      margin-left: .4rem;
+    }
+    .badge-active { background: var(--blue-lt); color: var(--blue); }
+    .badge-done   { background: #f0fdf4; color: var(--teal); }
+
+    /* ── Submission ───────────────────────────────────────────────── */
+    .steps {
+      counter-reset: steps;
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step {
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 2.25rem 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      font-size: .875rem;
+      flex-shrink: 0;
+    }
+    .step-num::before { content: counter(steps); }
+
+    .step-body h3 {
+      font-size: .975rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .25rem;
+    }
+
+    .step-body p { font-size: .9rem; margin: 0; }
+
+    code {
+      font-family: "SF Mono", "Fira Mono", Consolas, monospace;
+      font-size: .85em;
+      background: var(--gray-1);
+      border: 1px solid var(--gray-2);
+      border-radius: 4px;
+      padding: .1em .35em;
+      color: #b91c1c;
+    }
+
+    pre {
+      background: var(--navy);
+      color: #e2e8f0;
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      font-size: .85rem;
+      overflow-x: auto;
+      margin-top: .75rem;
+    }
+
+    pre code { background: none; border: none; padding: 0; color: inherit; font-size: 1em; }
+
+    /* ── Dataset ──────────────────────────────────────────────────── */
+    .dataset-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-pill {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--blue-lt);
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: .3rem .85rem;
+      font-size: .825rem;
+      font-weight: 600;
+      color: #1d4ed8;
+    }
+
+    .explorer-wrap {
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
     .explorer-embed {
       width: 100%;
       border: none;
-      min-height: 900px;
+      min-height: 880px;
       display: block;
+    }
+
+    /* ── FAQ ──────────────────────────────────────────────────────── */
+    .faq-list {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    details {
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    summary {
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--navy);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background: var(--gray-1);
+      transition: background .15s;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary:hover { background: var(--gray-2); }
+
+    summary::after {
+      content: "+";
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--gray-3);
+      transition: transform .2s;
+    }
+    details[open] summary::after { content: "−"; }
+    details[open] summary { background: #fff; border-bottom: 1px solid var(--gray-2); }
+
+    .faq-body {
+      padding: 1rem 1.25rem;
+      font-size: .9rem;
+      color: var(--gray-4);
+      background: #fff;
+    }
+    .faq-body p { margin: 0; }
+
+    /* ── Footer ───────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .85rem;
+    }
+
+    footer a { color: rgba(255,255,255,.8); }
+
+    /* ── Responsive ───────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { gap: 1rem; overflow-x: auto; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
     }
   </style>
 </head>
 <body>
-  <h1>BabyVLM Challenge</h1>
 
-  <iframe
-    class="explorer-embed"
-    src="https://babyvlm.github.io/?embed#dataset"
-    title="Data Explorer"
-    loading="lazy"
-  ></iframe>
+<!-- ── Navigation ──────────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-brand">BabyVLM Challenge</span>
+  <a href="#overview">Overview</a>
+  <a href="#dates">Dates</a>
+  <a href="#submission">Submission</a>
+  <a href="#dataset">Dataset</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-tag">Workshop Challenge &mdash; CVPR 2026</div>
+  <h1>BabyVLM Challenge</h1>
+  <p class="hero-sub">
+    Evaluating vision-language models on developmentally grounded tasks
+    inspired by infant cognition and learning.
+  </p>
+  <div class="hero-buttons">
+    <a href="#submission" class="btn btn-primary">Submit Results</a>
+    <a href="#dataset" class="btn btn-outline">Explore Dataset</a>
+  </div>
+</div>
+
+<!-- ── Main content ────────────────────────────────────────────────── -->
+<div class="page">
+
+  <!-- Overview -->
+  <section id="overview">
+    <div class="section-label">About</div>
+    <h2>Overview</h2>
+    <p>
+      [Placeholder: describe the challenge, its motivation, and what participants are expected to do.
+      For example: This challenge benchmarks state-of-the-art vision-language models against
+      perceptual and reasoning tasks drawn from developmental psychology.]
+    </p>
+    <p>
+      [Placeholder: describe the evaluation criteria, what makes this challenge unique, and
+      any connection to a workshop or conference.]
+    </p>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="card-icon">🧠</div>
+        <h3>Task</h3>
+        <p>[Short description of the core task, e.g., visual grounding, size estimation, object permanence.]</p>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">📊</div>
+        <h3>Evaluation</h3>
+        <p>[Metric used, e.g., accuracy, F1, rank correlation. How winners are determined.]</p>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🏆</div>
+        <h3>Prize</h3>
+        <p>[Prize details or recognition offered to top-performing teams.]</p>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">📅</div>
+        <h3>Deadline</h3>
+        <p>[Final submission deadline, e.g., June 1, 2026.]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dates & Deadlines -->
+  <section id="dates">
+    <div class="section-label">Schedule</div>
+    <h2>Dates &amp; Deadlines</h2>
+    <p>All deadlines are 11:59 PM AoE (Anywhere on Earth).</p>
+
+    <div class="timeline">
+      <div class="timeline-item done">
+        <div class="timeline-date">Month DD, YYYY</div>
+        <div class="timeline-title">Challenge Launch <span class="badge badge-done">Done</span></div>
+        <div class="timeline-desc">Dataset and evaluation server released.</div>
+      </div>
+
+      <div class="timeline-item active">
+        <div class="timeline-date">Month DD, YYYY</div>
+        <div class="timeline-title">Submission Portal Opens <span class="badge badge-active">Now Open</span></div>
+        <div class="timeline-desc">Begin submitting predictions via EvalAI.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Month DD, YYYY</div>
+        <div class="timeline-title">Final Submission Deadline</div>
+        <div class="timeline-desc">No submissions accepted after this date.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Month DD, YYYY</div>
+        <div class="timeline-title">Results Announced</div>
+        <div class="timeline-desc">Winners notified and leaderboard published.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Month DD, YYYY</div>
+        <div class="timeline-title">Workshop / Paper Presentation</div>
+        <div class="timeline-desc">Top teams present at the associated workshop.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Submission Instructions -->
+  <section id="submission">
+    <div class="section-label">How to Participate</div>
+    <h2>Submission Instructions</h2>
+    <p>
+      [Placeholder: brief description of the submission format and any prerequisites.]
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Download the dataset</h3>
+          <p>
+            Request access and download the evaluation split from the
+            <a href="#dataset">Dataset section</a> below.
+            The test images are provided without ground-truth labels.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Generate predictions</h3>
+          <p>
+            Run your model on the test split and format results as a JSON file with one
+            prediction per line. Each entry should include <code>image_id</code> and
+            <code>prediction</code> fields.
+          </p>
+          <pre><code>[
+  {"image_id": "img_0001", "prediction": "..."},
+  {"image_id": "img_0002", "prediction": "..."}
+]</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Submit via [platform]</h3>
+          <p>
+            Upload your <code>predictions.json</code> to
+            <a href="#" target="_blank">[submission portal link]</a>.
+            You may submit up to <strong>[N]</strong> times per day.
+            The leaderboard shows your best-scoring submission.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h3>Submit a system description (finalists)</h3>
+          <p>
+            Top-ranked teams will be contacted to provide a short system description
+            paper (&le;4 pages) describing their approach.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dataset -->
+  <section id="dataset">
+    <div class="section-label">Data</div>
+    <h2>Dataset</h2>
+    <p>
+      [Placeholder: describe the dataset — how it was collected, what it contains,
+      licensing terms, and how participants can access it.]
+    </p>
+
+    <div class="dataset-meta">
+      <span class="meta-pill">📦 [X]k images</span>
+      <span class="meta-pill">🏷 [N] categories</span>
+      <span class="meta-pill">🔒 License: [type]</span>
+      <span class="meta-pill">📥 [Download / Request Access]</span>
+    </div>
+
+    <div class="explorer-wrap">
+      <iframe
+        class="explorer-embed"
+        src="https://babyvlm.github.io/?embed#dataset"
+        title="BabyVLM Data Explorer"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-label">Help</div>
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <details>
+        <summary>Who can participate?</summary>
+        <div class="faq-body">
+          <p>[Placeholder: eligibility requirements — open to all, academic teams only, etc.]</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can I use external data or pre-trained models?</summary>
+        <div class="faq-body">
+          <p>[Placeholder: describe allowed external resources. e.g., "Pre-trained models are permitted
+          as long as they were not trained on held-out test data."]</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How many submissions do I get?</summary>
+        <div class="faq-body">
+          <p>[Placeholder: daily / total submission limits and what counts toward the leaderboard.]</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What format should my predictions be in?</summary>
+        <div class="faq-body">
+          <p>See the <a href="#submission">Submission Instructions</a> section for the required
+          JSON format and field names.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I contact the organizers?</summary>
+        <div class="faq-body">
+          <p>Email us at <a href="mailto:[contact@example.com]">[contact@example.com]</a> or open
+          an issue on our <a href="#" target="_blank">GitHub repository</a>.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+</div><!-- /.page -->
+
+<!-- ── Footer ──────────────────────────────────────────────────────── -->
+<footer>
+  <p>BabyVLM Challenge &mdash; [Affiliated Workshop], [Conference] [Year]</p>
+  <p style="margin-top:.4rem;">
+    Questions? <a href="mailto:[contact@example.com]">Contact the organizers</a>
+  </p>
+</footer>
+
 </body>
 </html>
