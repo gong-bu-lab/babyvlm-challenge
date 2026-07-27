@@ -559,6 +559,57 @@
     }
     .faq-body p { margin: 0; }
 
+    /* ── Committee ───────────────────────────────────────────────── */
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+    }
+
+    .committee-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: .75rem;
+    }
+
+    .committee-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gray-2);
+    }
+
+    .committee-initials {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--blue-lt);
+      border: 3px solid var(--gray-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .committee-name {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--navy);
+    }
+
+    .committee-affil {
+      font-size: .825rem;
+      color: var(--gray-4);
+      margin-top: -.5rem;
+    }
+
     /* ── Footer ───────────────────────────────────────────────────── */
     footer {
       background: var(--navy);
@@ -586,6 +637,7 @@
   <a href="#dates">Dates</a>
   <a href="#submission">Submission</a>
   <a href="#dataset">Dataset</a>
+  <a href="#committee">Committee</a>
   <a href="#faq">FAQ</a>
 </nav>
 
@@ -799,6 +851,48 @@
     <div class="dx-eyebrow" style="margin-top:36px;">Samples</div>
     <div class="dx-grid-bleed">
       <div id="dxGrid" class="dx-grid"></div>
+    </div>
+  </section>
+
+  <!-- Steering Committee -->
+  <section id="committee">
+    <div class="section-label">Leadership</div>
+    <h2>Challenge Steering Committee</h2>
+    <p>Confirmed advisors guiding the scientific direction of the challenge.</p>
+    <div class="committee-grid">
+
+      <div class="committee-card">
+        <img src="assets/img/people/frank.jpg" alt="Michael C. Frank" class="committee-avatar">
+        <div>
+          <div class="committee-name">Michael C. Frank</div>
+          <div class="committee-affil">Psychology, Stanford</div>
+        </div>
+      </div>
+
+      <div class="committee-card">
+        <div class="committee-initials">CY</div>
+        <div>
+          <div class="committee-name">Chen Yu</div>
+          <div class="committee-affil">Psychology, UT Austin</div>
+        </div>
+      </div>
+
+      <div class="committee-card">
+        <img src="assets/img/people/grauman.jpg" alt="Kristen Grauman" class="committee-avatar">
+        <div>
+          <div class="committee-name">Kristen Grauman</div>
+          <div class="committee-affil">CS, UT Austin</div>
+        </div>
+      </div>
+
+      <div class="committee-card">
+        <div class="committee-initials">KS</div>
+        <div>
+          <div class="committee-name">Kate Saenko</div>
+          <div class="committee-affil">CS, Boston University</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
