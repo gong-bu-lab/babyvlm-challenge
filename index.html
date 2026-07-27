@@ -485,7 +485,7 @@
     .dx-choice-thumb { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: #f0f9ff; display: block; }
     .dx-choice-foot { display: flex; align-items: center; gap: 8px; padding: 9px 11px; }
     .dx-choice-card.correct .dx-choice-foot { background: #e4f7f4; }
-    .dx-choice-badge { font-family: var(--heading-font); font-weight: 700; font-size: 14.5px; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #eff6ff; color: #1d4ed8; flex-shrink: 0; }
+    .dx-choice-badge { font-family: var(--heading-font); font-weight: 700; font-size: 13px; border-radius: 999px; padding: 3px 10px; display: inline-flex; align-items: center; justify-content: center; background: var(--gray-2); color: var(--gray-4); flex-shrink: 0; }
     .dx-choice-card.correct .dx-choice-badge { background: #0ea5a0; color: #fff; }
     .dx-choice-text { font-size: 16px; color: #1e293b; line-height: 1.3; }
     .dx-choice-card.correct .dx-choice-text { color: #0b6e6a; font-weight: 700; }
@@ -783,9 +783,7 @@
     <div class="section-label">Benchmark</div>
     <h2>Task</h2>
     <p>
-      Our shared task is the <strong>DevCV Toolbox</strong>, released in December 2025 as part of
-      <a href="https://shawnking98.github.io/BabyVLM-v2/" target="_blank" rel="noopener">BabyVLM-V2</a>
-      and modeled after a subset of the tasks in the
+      Our shared task is the <strong>DevCV Toolbox</strong>, modeled directly after a subset of the tasks in the
       <a href="https://nihbabytoolbox.org" target="_blank" rel="noopener">NIH Baby Toolbox</a>.
       The DevCV Toolbox consists of 10 subtasks, each created from four data sources:
       original Toolbox tasks (NIH), SAYCam, BabyView, and Ego4D.
@@ -1098,6 +1096,15 @@
     const g = [...item.conversations].reverse().find(c => c.from === 'gpt');
     return g ? g.value.trim() : '?';
   }
+  function gtAnswerText(item) {
+    const letter = gtAnswer(item);
+    if (!/^[A-Za-z]$/.test(letter)) return letter;
+    const human = item.conversations.find(c => c.from === 'human');
+    if (!human) return letter;
+    const choices = parseTextChoices(human.value);
+    const match = choices.find(c => c.label === letter.toUpperCase());
+    return match ? match.text : letter;
+  }
 
   const PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="116" height="86"><rect width="116" height="86" fill="#efedf8"/><text x="58" y="46" font-size="9" fill="#9c99bd" text-anchor="middle" font-family="sans-serif">image n/a</text></svg>'
@@ -1267,7 +1274,7 @@
     meta.className = 'dx-card-meta';
     const ans = document.createElement('span');
     ans.className = 'dx-badge dx-badge-ans';
-    ans.textContent = 'A: ' + gtAnswer(item);
+    ans.textContent = 'Answer: ' + gtAnswerText(item);
     meta.appendChild(ans);
     const nimg = (item.image || []).length;
     const ib = document.createElement('span');
