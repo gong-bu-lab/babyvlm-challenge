@@ -395,7 +395,6 @@
     #task .dx-ds-stat { font-family: var(--dx-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #94a3b8; }
     #task .dx-ds-stat b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--heading-color); font-variant-numeric: tabular-nums; }
 
-    #task .dx-toolbar { background: #fff; border: 1px solid var(--dx-line); border-radius: 20px; padding: 20px 22px 22px; box-shadow: 0 1px 3px rgba(33,31,69,0.04), 0 12px 30px rgba(33,31,69,0.06); margin-bottom: 26px; }
     #task .dx-ctl-label { font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; }
     #task .dx-split-row { margin-bottom: 20px; }
     #task .dx-tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -846,18 +845,16 @@
       </div>
     </div>
 
-    <div class="dx-toolbar">
-      <div class="dx-split-row" id="dxSplitWrap" style="display:none;">
-        <div class="dx-ctl-label">Split</div>
-        <div class="dx-tab-row" id="dxSplitTabs"></div>
-      </div>
-      <div class="dx-ctl-label">Task</div>
-      <div class="dx-chip-row" id="dxTaskChips"></div>
-      <div class="dx-readout">
-        <span class="dx-readout-bar"></span>
-        <div class="dx-readout-text">
-          <div class="dx-task-desc" id="dxTaskDesc"></div>
-        </div>
+    <div class="dx-split-row" id="dxSplitWrap" style="display:none;margin-bottom:20px;">
+      <div class="dx-eyebrow" style="margin-bottom:12px;">Split</div>
+      <div class="dx-tab-row" id="dxSplitTabs"></div>
+    </div>
+    <div class="dx-eyebrow" style="margin-bottom:14px;">Task</div>
+    <div class="dx-chip-row" id="dxTaskChips"></div>
+    <div class="dx-readout" style="margin-bottom:26px;">
+      <span class="dx-readout-bar"></span>
+      <div class="dx-readout-text">
+        <div class="dx-task-desc" id="dxTaskDesc"></div>
       </div>
     </div>
 
