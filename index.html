@@ -354,88 +354,88 @@
       --default-color: #475569;
     }
 
-    #dataset {
+    #task {
       --src: #0d9488;
       --dx-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
       --dx-line: #e2e8f0;
       --accent-color: #2563eb;
     }
 
-    #dataset .dx-intro { max-width: 720px; margin: 0 auto 34px; text-align: center; font-size: 19px; line-height: 1.65; color: color-mix(in srgb, var(--default-color), transparent 8%); text-wrap: pretty; }
-    #dataset .dx-intro code { font-family: var(--dx-mono); font-size: 0.82em; background: #eff6ff; color: #1d4ed8; padding: 1px 6px; border-radius: 6px; }
+    #task .dx-intro { max-width: 720px; margin: 0 auto 34px; text-align: center; font-size: 19px; line-height: 1.65; color: color-mix(in srgb, var(--default-color), transparent 8%); text-wrap: pretty; }
+    #task .dx-intro code { font-family: var(--dx-mono); font-size: 0.82em; background: #eff6ff; color: #1d4ed8; padding: 1px 6px; border-radius: 6px; }
 
-    #dataset .dx-eyebrow { font-family: var(--dx-mono); font-size: 13.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #94a3b8; display: flex; align-items: center; gap: 12px; margin: 0 2px 14px; }
-    #dataset .dx-eyebrow::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--dx-line), transparent); }
-    #dataset .dx-eyebrow-lg { font-size: 17px; letter-spacing: 0.08em; color: #1a2744; font-weight: 600; }
+    #task .dx-eyebrow { font-family: var(--dx-mono); font-size: 13.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #94a3b8; display: flex; align-items: center; gap: 12px; margin: 0 2px 14px; }
+    #task .dx-eyebrow::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--dx-line), transparent); }
+    #task .dx-eyebrow-lg { font-size: 17px; letter-spacing: 0.08em; color: #1a2744; font-weight: 600; }
 
-    #dataset .dx-registry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
-    @media (max-width: 1100px) { #dataset .dx-registry { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { #dataset .dx-registry { grid-template-columns: 1fr; } }
+    #task .dx-registry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+    @media (max-width: 1100px) { #task .dx-registry { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { #task .dx-registry { grid-template-columns: 1fr; } }
 
-    #dataset .dx-ds { position: relative; text-align: left; background: #fff; border: 1px solid var(--dx-line); border-radius: 18px; padding: 17px 20px 16px 21px; cursor: pointer; overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease; }
-    #dataset .dx-ds[data-source="ego4d"]    { --src: #2563eb; }
-    #dataset .dx-ds[data-source="saycam"]   { --src: #0d9488; }
-    #dataset .dx-ds[data-source="babyview"] { --src: #1d4ed8; }
-    #dataset .dx-ds[data-source="nih"]      { --src: #0369a1; }
-    #dataset .dx-ds::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--src); opacity: 0.28; transition: opacity 0.18s ease; }
-    #dataset .dx-ds:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--src), #fff 55%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 14px 32px rgba(33,31,69,0.10); }
-    #dataset .dx-ds:hover::before { opacity: 0.55; }
-    #dataset .dx-ds:active { transform: translateY(0) scale(0.985); }
-    #dataset .dx-ds:focus-visible { outline: 2px solid var(--src); outline-offset: 2px; }
-    #dataset .dx-ds.current { border-color: color-mix(in srgb, var(--src), #fff 30%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 16px 36px color-mix(in srgb, var(--src), transparent 82%); }
-    #dataset .dx-ds.current::before { opacity: 1; }
-    #dataset .dx-ds-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-    #dataset .dx-ds-name { font-family: var(--heading-font); font-weight: 700; font-size: 19px; color: var(--heading-color); line-height: 1.1; }
-    #dataset .dx-ds-prov { font-family: var(--dx-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--src), #000 8%); background: color-mix(in srgb, var(--src), #fff 90%); padding: 3px 9px; border-radius: 50px; white-space: nowrap; }
-    #dataset .dx-ds-desc { font-size: 14.5px; color: #475569; line-height: 1.45; margin-top: 10px; text-wrap: pretty; }
-    #dataset .dx-ds-stats { display: flex; gap: 16px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--dx-line); }
-    #dataset .dx-ds-stat { font-family: var(--dx-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #94a3b8; }
-    #dataset .dx-ds-stat b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--heading-color); font-variant-numeric: tabular-nums; }
+    #task .dx-ds { position: relative; text-align: left; background: #fff; border: 1px solid var(--dx-line); border-radius: 18px; padding: 17px 20px 16px 21px; cursor: pointer; overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease; }
+    #task .dx-ds[data-source="ego4d"]    { --src: #2563eb; }
+    #task .dx-ds[data-source="saycam"]   { --src: #0d9488; }
+    #task .dx-ds[data-source="babyview"] { --src: #1d4ed8; }
+    #task .dx-ds[data-source="nih"]      { --src: #0369a1; }
+    #task .dx-ds::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--src); opacity: 0.28; transition: opacity 0.18s ease; }
+    #task .dx-ds:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--src), #fff 55%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 14px 32px rgba(33,31,69,0.10); }
+    #task .dx-ds:hover::before { opacity: 0.55; }
+    #task .dx-ds:active { transform: translateY(0) scale(0.985); }
+    #task .dx-ds:focus-visible { outline: 2px solid var(--src); outline-offset: 2px; }
+    #task .dx-ds.current { border-color: color-mix(in srgb, var(--src), #fff 30%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 16px 36px color-mix(in srgb, var(--src), transparent 82%); }
+    #task .dx-ds.current::before { opacity: 1; }
+    #task .dx-ds-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    #task .dx-ds-name { font-family: var(--heading-font); font-weight: 700; font-size: 19px; color: var(--heading-color); line-height: 1.1; }
+    #task .dx-ds-prov { font-family: var(--dx-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--src), #000 8%); background: color-mix(in srgb, var(--src), #fff 90%); padding: 3px 9px; border-radius: 50px; white-space: nowrap; }
+    #task .dx-ds-desc { font-size: 14.5px; color: #475569; line-height: 1.45; margin-top: 10px; text-wrap: pretty; }
+    #task .dx-ds-stats { display: flex; gap: 16px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--dx-line); }
+    #task .dx-ds-stat { font-family: var(--dx-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #94a3b8; }
+    #task .dx-ds-stat b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--heading-color); font-variant-numeric: tabular-nums; }
 
-    #dataset .dx-toolbar { background: #fff; border: 1px solid var(--dx-line); border-radius: 20px; padding: 20px 22px 22px; box-shadow: 0 1px 3px rgba(33,31,69,0.04), 0 12px 30px rgba(33,31,69,0.06); margin-bottom: 26px; }
-    #dataset .dx-ctl-label { font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; }
-    #dataset .dx-split-row { margin-bottom: 20px; }
-    #dataset .dx-tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    #dataset .dx-tab { font-family: var(--dx-mono); font-weight: 500; font-size: 15px; letter-spacing: 0.02em; padding: 8px 18px; border-radius: 9px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
-    #dataset .dx-tab:hover { border-color: color-mix(in srgb, var(--src), #fff 45%); color: color-mix(in srgb, var(--src), #000 12%); }
-    #dataset .dx-tab:active { transform: scale(0.96); }
-    #dataset .dx-tab.active { background: var(--src); color: #fff; border-color: var(--src); box-shadow: 0 4px 12px color-mix(in srgb, var(--src), transparent 68%); }
-    #dataset .dx-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    #dataset .dx-chip { font-family: var(--heading-font); font-weight: 600; font-size: 16.5px; padding: 11px 22px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
-    #dataset .dx-chip:hover { background: #f8fafc; border-color: #bfdbfe; color: #1e293b; }
-    #dataset .dx-chip:active { transform: scale(0.96); }
-    #dataset .dx-chip.active { background: color-mix(in srgb, var(--src), #fff 90%); border-color: color-mix(in srgb, var(--src), #fff 25%); color: color-mix(in srgb, var(--src), #000 22%); }
-    #dataset .dx-readout { display: flex; align-items: flex-start; gap: 12px; background: color-mix(in srgb, var(--src), #fff 94%); border-radius: 12px; padding: 13px 16px; margin-top: 2px; }
-    #dataset .dx-readout-bar { flex-shrink: 0; width: 3px; align-self: stretch; border-radius: 3px; background: var(--src); }
-    #dataset .dx-readout-text { flex: 1; min-width: 0; }
-    #dataset .dx-task-desc { font-family: var(--default-font); font-size: 18.5px; line-height: 1.55; color: #334155; text-wrap: pretty; }
+    #task .dx-toolbar { background: #fff; border: 1px solid var(--dx-line); border-radius: 20px; padding: 20px 22px 22px; box-shadow: 0 1px 3px rgba(33,31,69,0.04), 0 12px 30px rgba(33,31,69,0.06); margin-bottom: 26px; }
+    #task .dx-ctl-label { font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; }
+    #task .dx-split-row { margin-bottom: 20px; }
+    #task .dx-tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    #task .dx-tab { font-family: var(--dx-mono); font-weight: 500; font-size: 15px; letter-spacing: 0.02em; padding: 8px 18px; border-radius: 9px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
+    #task .dx-tab:hover { border-color: color-mix(in srgb, var(--src), #fff 45%); color: color-mix(in srgb, var(--src), #000 12%); }
+    #task .dx-tab:active { transform: scale(0.96); }
+    #task .dx-tab.active { background: var(--src); color: #fff; border-color: var(--src); box-shadow: 0 4px 12px color-mix(in srgb, var(--src), transparent 68%); }
+    #task .dx-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    #task .dx-chip { font-family: var(--heading-font); font-weight: 600; font-size: 16.5px; padding: 11px 22px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
+    #task .dx-chip:hover { background: #f8fafc; border-color: #bfdbfe; color: #1e293b; }
+    #task .dx-chip:active { transform: scale(0.96); }
+    #task .dx-chip.active { background: color-mix(in srgb, var(--src), #fff 90%); border-color: color-mix(in srgb, var(--src), #fff 25%); color: color-mix(in srgb, var(--src), #000 22%); }
+    #task .dx-readout { display: flex; align-items: flex-start; gap: 12px; background: color-mix(in srgb, var(--src), #fff 94%); border-radius: 12px; padding: 13px 16px; margin-top: 2px; }
+    #task .dx-readout-bar { flex-shrink: 0; width: 3px; align-self: stretch; border-radius: 3px; background: var(--src); }
+    #task .dx-readout-text { flex: 1; min-width: 0; }
+    #task .dx-task-desc { font-family: var(--default-font); font-size: 18.5px; line-height: 1.55; color: #334155; text-wrap: pretty; }
 
-    #dataset .dx-grid-bleed { width: auto; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 0 clamp(16px, 4vw, 56px); box-sizing: border-box; }
-    #dataset .dx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 360px)); justify-content: center; gap: 26px; }
-    #dataset .dx-card { background: #fff; border: 1px solid var(--dx-line); border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(33,31,69,0.04), 0 8px 22px rgba(33,31,69,0.06); transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease; }
-    #dataset .dx-card:hover, #dataset .dx-card:focus-visible { box-shadow: 0 2px 4px rgba(33,31,69,0.05), 0 24px 50px rgba(33,31,69,0.15); transform: translateY(-4px); border-color: color-mix(in srgb, var(--src), #fff 45%); outline: none; }
-    #dataset .dx-card:focus-visible { border-color: var(--src); }
-    #dataset .dx-card:active { transform: translateY(-4px) scale(0.985); }
-    #dataset .dx-thumb-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #f1f5f9; overflow: hidden; }
-    #dataset .dx-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; outline: 1px solid rgba(0,0,0,0.06); outline-offset: -1px; }
-    #dataset .dx-card:hover .dx-thumb { transform: scale(1.04); }
-    #dataset .dx-frame-idx { position: absolute; top: 10px; left: 10px; font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; color: #fff; background: rgba(20,18,43,0.55); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
-    #dataset .dx-frame-idx::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--src); box-shadow: 0 0 0 3px color-mix(in srgb, var(--src), transparent 65%); }
-    #dataset .dx-thumb-wrap::before, #dataset .dx-thumb-wrap::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid #fff; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
-    #dataset .dx-thumb-wrap::before { top: 9px; left: 9px; border-right: none; border-bottom: none; }
-    #dataset .dx-thumb-wrap::after { bottom: 9px; right: 9px; border-left: none; border-top: none; }
-    #dataset .dx-card:hover .dx-thumb-wrap::before, #dataset .dx-card:hover .dx-thumb-wrap::after,
-    #dataset .dx-card:focus-visible .dx-thumb-wrap::before, #dataset .dx-card:focus-visible .dx-thumb-wrap::after { opacity: 0.85; }
-    #dataset .dx-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
-    #dataset .dx-card-q { font-size: 17px; color: #1a2744; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    #dataset .dx-card-meta { display: flex; align-items: center; gap: 8px; margin-top: auto; }
-    #dataset .dx-badge { font-family: var(--heading-font); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; padding: 4px 11px; border-radius: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #dataset .dx-badge-ans { background: #f0fdf4; color: #0d9488; max-width: 72%; }
-    #dataset .dx-badge-img { background: color-mix(in srgb, var(--src), #fff 90%); color: color-mix(in srgb, var(--src), #000 22%); flex-shrink: 0; font-variant-numeric: tabular-nums; }
-    #dataset .dx-alert { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; color: #b3261e; background: #fdeceb; border: 1px solid #f2c3bf; border-left: 4px solid #d1362b; padding: 15px 18px; border-radius: 0 12px 12px 0; margin: 0 0 30px; }
-    #dataset .dx-alert::before { content: "\F33A"; font-family: "bootstrap-icons"; font-size: 18px; line-height: 1.3; color: #d1362b; flex-shrink: 0; }
-    #dataset .dx-alert a { color: #b3261e; font-weight: 700; text-decoration: underline; }
-    #dataset .dx-alert a:hover { color: #8f1b15; }
+    #task .dx-grid-bleed { width: auto; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 0 clamp(16px, 4vw, 56px); box-sizing: border-box; }
+    #task .dx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 360px)); justify-content: center; gap: 26px; }
+    #task .dx-card { background: #fff; border: 1px solid var(--dx-line); border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(33,31,69,0.04), 0 8px 22px rgba(33,31,69,0.06); transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease; }
+    #task .dx-card:hover, #task .dx-card:focus-visible { box-shadow: 0 2px 4px rgba(33,31,69,0.05), 0 24px 50px rgba(33,31,69,0.15); transform: translateY(-4px); border-color: color-mix(in srgb, var(--src), #fff 45%); outline: none; }
+    #task .dx-card:focus-visible { border-color: var(--src); }
+    #task .dx-card:active { transform: translateY(-4px) scale(0.985); }
+    #task .dx-thumb-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #f1f5f9; overflow: hidden; }
+    #task .dx-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; outline: 1px solid rgba(0,0,0,0.06); outline-offset: -1px; }
+    #task .dx-card:hover .dx-thumb { transform: scale(1.04); }
+    #task .dx-frame-idx { position: absolute; top: 10px; left: 10px; font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; color: #fff; background: rgba(20,18,43,0.55); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+    #task .dx-frame-idx::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--src); box-shadow: 0 0 0 3px color-mix(in srgb, var(--src), transparent 65%); }
+    #task .dx-thumb-wrap::before, #task .dx-thumb-wrap::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid #fff; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+    #task .dx-thumb-wrap::before { top: 9px; left: 9px; border-right: none; border-bottom: none; }
+    #task .dx-thumb-wrap::after { bottom: 9px; right: 9px; border-left: none; border-top: none; }
+    #task .dx-card:hover .dx-thumb-wrap::before, #task .dx-card:hover .dx-thumb-wrap::after,
+    #task .dx-card:focus-visible .dx-thumb-wrap::before, #task .dx-card:focus-visible .dx-thumb-wrap::after { opacity: 0.85; }
+    #task .dx-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
+    #task .dx-card-q { font-size: 17px; color: #1a2744; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    #task .dx-card-meta { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+    #task .dx-badge { font-family: var(--heading-font); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; padding: 4px 11px; border-radius: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #task .dx-badge-ans { background: #f0fdf4; color: #0d9488; max-width: 72%; }
+    #task .dx-badge-img { background: color-mix(in srgb, var(--src), #fff 90%); color: color-mix(in srgb, var(--src), #000 22%); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    #task .dx-alert { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; color: #b3261e; background: #fdeceb; border: 1px solid #f2c3bf; border-left: 4px solid #d1362b; padding: 15px 18px; border-radius: 0 12px 12px 0; margin: 0 0 30px; }
+    #task .dx-alert::before { content: "\F33A"; font-family: "bootstrap-icons"; font-size: 18px; line-height: 1.3; color: #d1362b; flex-shrink: 0; }
+    #task .dx-alert a { color: #b3261e; font-weight: 700; text-decoration: underline; }
+    #task .dx-alert a:hover { color: #8f1b15; }
 
     .dx-empty, .dx-loading { grid-column: 1 / -1; color: #94a3b8; font-size: 17px; padding: 56px 0; text-align: center; }
     .dx-loading { display: flex; align-items: center; justify-content: center; gap: 12px; }
@@ -495,18 +495,18 @@
     @media (max-width: 760px) { .dx-stimulus { max-width: 100%; } .dx-body { gap: 18px; } .dx-choices { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
 
     @media (prefers-reduced-motion: no-preference) {
-      #dataset .dx-card { animation: dxCardIn 0.32s ease both; }
+      #task .dx-card { animation: dxCardIn 0.32s ease both; }
       @keyframes dxCardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
     }
     @media (prefers-reduced-motion: reduce) {
-      #dataset .dx-card, .dx-modal, .dx-spinner { animation: none !important; }
+      #task .dx-card, .dx-modal, .dx-spinner { animation: none !important; }
     }
     @media (max-width: 575px) {
-      #dataset .dx-grid-bleed { padding: 0 12px; }
-      #dataset .dx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); gap: 14px; }
-      #dataset .dx-toolbar { padding: 18px 16px; }
-      #dataset .dx-task-desc { font-size: 17px; }
-      #dataset .dx-ds { padding: 16px 16px 15px; }
+      #task .dx-grid-bleed { padding: 0 12px; }
+      #task .dx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); gap: 14px; }
+      #task .dx-toolbar { padding: 18px 16px; }
+      #task .dx-task-desc { font-size: 17px; }
+      #task .dx-ds { padding: 16px 16px 15px; }
       .dx-modal { padding: 26px 20px 28px; }
     }
 
@@ -636,7 +636,8 @@
   <a href="#overview">Overview</a>
   <a href="#dates">Dates</a>
   <a href="#submission">Submission</a>
-  <a href="#dataset">Dataset</a>
+  <a href="#pretraining">Pretraining</a>
+  <a href="#task">Task</a>
   <a href="#committee">Committee</a>
   <a href="#faq">FAQ</a>
 </nav>
@@ -650,7 +651,7 @@
   </p>
   <div class="hero-buttons">
     <a href="#submission" class="btn btn-primary">Submit Results</a>
-    <a href="#dataset" class="btn btn-outline">Explore Dataset</a>
+    <a href="#task" class="btn btn-outline">Explore Task</a>
   </div>
 </div>
 
@@ -740,7 +741,7 @@
           <h3>Download the training data</h3>
           <p>
             Download the training data from the
-            <a href="#dataset">Dataset section</a> below.
+            <a href="#pretraining">Pretraining section</a> below.
           </p>
         </div>
       </div>
@@ -770,10 +771,17 @@
     </div>
   </section>
 
-  <!-- Dataset -->
-  <section id="dataset">
-    <div class="section-label">Data</div>
-    <h2>Dataset</h2>
+  <!-- Pretraining -->
+  <section id="pretraining">
+    <div class="section-label">Training Data</div>
+    <h2>Pretraining</h2>
+    <p>[Placeholder: describe the pretraining data — sources, scale, how to download, and any usage restrictions.]</p>
+  </section>
+
+  <!-- Task -->
+  <section id="task">
+    <div class="section-label">Benchmark</div>
+    <h2>Task</h2>
     <p>
       [Placeholder: describe the dataset — how it was collected, what it contains,
       licensing terms, and how participants can access it.]
@@ -1058,7 +1066,7 @@
 
   const state = { source: 'saycam', split: 'train', task: null };
 
-  const datasetRoot  = document.getElementById('dataset');
+  const datasetRoot  = document.getElementById('task');
   const splitWrap    = document.getElementById('dxSplitWrap');
   const splitTabs    = document.getElementById('dxSplitTabs');
   const taskChips    = document.getElementById('dxTaskChips');
