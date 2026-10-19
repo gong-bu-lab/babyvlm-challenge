@@ -357,87 +357,88 @@
       --default-color: #475569;
     }
 
-    #task {
+    :is(#task, #pretraining) {
       --src: #0d9488;
       --dx-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
       --dx-line: #e2e8f0;
       --accent-color: #2563eb;
     }
 
-    #task .dx-intro { max-width: 720px; margin: 0 auto 34px; text-align: center; font-size: 19px; line-height: 1.65; color: color-mix(in srgb, var(--default-color), transparent 8%); text-wrap: pretty; }
-    #task .dx-intro code { font-family: var(--dx-mono); font-size: 0.82em; background: #eff6ff; color: #1d4ed8; padding: 1px 6px; border-radius: 6px; }
+    :is(#task, #pretraining) .dx-intro { max-width: 720px; margin: 0 auto 34px; text-align: center; font-size: 19px; line-height: 1.65; color: color-mix(in srgb, var(--default-color), transparent 8%); text-wrap: pretty; }
+    :is(#task, #pretraining) .dx-intro code { font-family: var(--dx-mono); font-size: 0.82em; background: #eff6ff; color: #1d4ed8; padding: 1px 6px; border-radius: 6px; }
 
-    #task .dx-eyebrow { font-family: var(--dx-mono); font-size: 13.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #94a3b8; display: flex; align-items: center; gap: 12px; margin: 0 2px 14px; }
-    #task .dx-eyebrow::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--dx-line), transparent); }
-    #task .dx-eyebrow-lg { font-size: 17px; letter-spacing: 0.08em; color: #1a2744; font-weight: 600; }
+    :is(#task, #pretraining) .dx-eyebrow { font-family: var(--dx-mono); font-size: 13.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #94a3b8; display: flex; align-items: center; gap: 12px; margin: 0 2px 14px; }
+    :is(#task, #pretraining) .dx-eyebrow::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--dx-line), transparent); }
+    :is(#task, #pretraining) .dx-eyebrow-lg { font-size: 17px; letter-spacing: 0.08em; color: #1a2744; font-weight: 600; }
 
-    #task .dx-registry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
-    @media (max-width: 1100px) { #task .dx-registry { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { #task .dx-registry { grid-template-columns: 1fr; } }
+    :is(#task, #pretraining) .dx-registry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+    #pretraining .dx-registry { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1100px) { :is(#task, #pretraining) .dx-registry { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { :is(#task, #pretraining) .dx-registry { grid-template-columns: 1fr; } }
 
-    #task .dx-ds { position: relative; text-align: left; background: #fff; border: 1px solid var(--dx-line); border-radius: 18px; padding: 17px 20px 16px 21px; cursor: pointer; overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease; }
-    #task .dx-ds[data-source="ego4d"]    { --src: #2563eb; }
-    #task .dx-ds[data-source="saycam"]   { --src: #0d9488; }
-    #task .dx-ds[data-source="babyview"] { --src: #1d4ed8; }
-    #task .dx-ds[data-source="nih"]      { --src: #0369a1; }
-    #task .dx-ds::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--src); opacity: 0.28; transition: opacity 0.18s ease; }
-    #task .dx-ds:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--src), #fff 55%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 14px 32px rgba(33,31,69,0.10); }
-    #task .dx-ds:hover::before { opacity: 0.55; }
-    #task .dx-ds:active { transform: translateY(0) scale(0.985); }
-    #task .dx-ds:focus-visible { outline: 2px solid var(--src); outline-offset: 2px; }
-    #task .dx-ds.current { border-color: color-mix(in srgb, var(--src), #fff 30%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 16px 36px color-mix(in srgb, var(--src), transparent 82%); }
-    #task .dx-ds.current::before { opacity: 1; }
-    #task .dx-ds-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-    #task .dx-ds-name { font-family: var(--heading-font); font-weight: 700; font-size: 19px; color: var(--heading-color); line-height: 1.1; }
-    #task .dx-ds-prov { font-family: var(--dx-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--src), #000 8%); background: color-mix(in srgb, var(--src), #fff 90%); padding: 3px 9px; border-radius: 50px; white-space: nowrap; }
-    #task .dx-ds-desc { font-size: 14.5px; color: #475569; line-height: 1.45; margin-top: 10px; text-wrap: pretty; }
-    #task .dx-ds-stats { display: flex; gap: 16px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--dx-line); }
-    #task .dx-ds-stat { font-family: var(--dx-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #94a3b8; }
-    #task .dx-ds-stat b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--heading-color); font-variant-numeric: tabular-nums; }
+    :is(#task, #pretraining) .dx-ds { position: relative; text-align: left; background: #fff; border: 1px solid var(--dx-line); border-radius: 18px; padding: 17px 20px 16px 21px; cursor: pointer; overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease; }
+    :is(#task, #pretraining) .dx-ds[data-source="ego4d"]    { --src: #2563eb; }
+    :is(#task, #pretraining) .dx-ds[data-source="saycam"]   { --src: #0d9488; }
+    :is(#task, #pretraining) .dx-ds[data-source="babyview"] { --src: #1d4ed8; }
+    :is(#task, #pretraining) .dx-ds[data-source="nih"]      { --src: #0369a1; }
+    :is(#task, #pretraining) .dx-ds::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--src); opacity: 0.28; transition: opacity 0.18s ease; }
+    :is(#task, #pretraining) .dx-ds:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--src), #fff 55%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 14px 32px rgba(33,31,69,0.10); }
+    :is(#task, #pretraining) .dx-ds:hover::before { opacity: 0.55; }
+    :is(#task, #pretraining) .dx-ds:active { transform: translateY(0) scale(0.985); }
+    :is(#task, #pretraining) .dx-ds:focus-visible { outline: 2px solid var(--src); outline-offset: 2px; }
+    :is(#task, #pretraining) .dx-ds.current { border-color: color-mix(in srgb, var(--src), #fff 30%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 16px 36px color-mix(in srgb, var(--src), transparent 82%); }
+    :is(#task, #pretraining) .dx-ds.current::before { opacity: 1; }
+    :is(#task, #pretraining) .dx-ds-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    :is(#task, #pretraining) .dx-ds-name { font-family: var(--heading-font); font-weight: 700; font-size: 19px; color: var(--heading-color); line-height: 1.1; }
+    :is(#task, #pretraining) .dx-ds-prov { font-family: var(--dx-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--src), #000 8%); background: color-mix(in srgb, var(--src), #fff 90%); padding: 3px 9px; border-radius: 50px; white-space: nowrap; }
+    :is(#task, #pretraining) .dx-ds-desc { font-size: 14.5px; color: #475569; line-height: 1.45; margin-top: 10px; text-wrap: pretty; }
+    :is(#task, #pretraining) .dx-ds-stats { display: flex; gap: 16px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--dx-line); }
+    :is(#task, #pretraining) .dx-ds-stat { font-family: var(--dx-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #94a3b8; }
+    :is(#task, #pretraining) .dx-ds-stat b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--heading-color); font-variant-numeric: tabular-nums; }
 
-    #task .dx-ctl-label { font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; }
-    #task .dx-split-row { margin-bottom: 20px; }
-    #task .dx-tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    #task .dx-tab { font-family: var(--dx-mono); font-weight: 500; font-size: 15px; letter-spacing: 0.02em; padding: 8px 18px; border-radius: 9px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
-    #task .dx-tab:hover { border-color: color-mix(in srgb, var(--src), #fff 45%); color: color-mix(in srgb, var(--src), #000 12%); }
-    #task .dx-tab:active { transform: scale(0.96); }
-    #task .dx-tab.active { background: var(--src); color: #fff; border-color: var(--src); box-shadow: 0 4px 12px color-mix(in srgb, var(--src), transparent 68%); }
-    #task .dx-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    #task .dx-chip { font-family: var(--heading-font); font-weight: 600; font-size: 16.5px; padding: 11px 22px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
-    #task .dx-chip:hover { background: #f8fafc; border-color: #bfdbfe; color: #1e293b; }
-    #task .dx-chip:active { transform: scale(0.96); }
-    #task .dx-chip.active { background: color-mix(in srgb, var(--src), #fff 90%); border-color: color-mix(in srgb, var(--src), #fff 25%); color: color-mix(in srgb, var(--src), #000 22%); }
-    #task .dx-readout { display: flex; align-items: flex-start; gap: 12px; background: color-mix(in srgb, var(--src), #fff 94%); border-radius: 12px; padding: 13px 16px; margin-top: 2px; }
-    #task .dx-readout-bar { flex-shrink: 0; width: 3px; align-self: stretch; border-radius: 3px; background: var(--src); }
-    #task .dx-readout-text { flex: 1; min-width: 0; }
-    #task .dx-task-desc { font-family: var(--default-font); font-size: 18.5px; line-height: 1.55; color: #334155; text-wrap: pretty; }
+    :is(#task, #pretraining) .dx-ctl-label { font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; }
+    :is(#task, #pretraining) .dx-split-row { margin-bottom: 20px; }
+    :is(#task, #pretraining) .dx-tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    :is(#task, #pretraining) .dx-tab { font-family: var(--dx-mono); font-weight: 500; font-size: 15px; letter-spacing: 0.02em; padding: 8px 18px; border-radius: 9px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
+    :is(#task, #pretraining) .dx-tab:hover { border-color: color-mix(in srgb, var(--src), #fff 45%); color: color-mix(in srgb, var(--src), #000 12%); }
+    :is(#task, #pretraining) .dx-tab:active { transform: scale(0.96); }
+    :is(#task, #pretraining) .dx-tab.active { background: var(--src); color: #fff; border-color: var(--src); box-shadow: 0 4px 12px color-mix(in srgb, var(--src), transparent 68%); }
+    :is(#task, #pretraining) .dx-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    :is(#task, #pretraining) .dx-chip { font-family: var(--heading-font); font-weight: 600; font-size: 16.5px; padding: 11px 22px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
+    :is(#task, #pretraining) .dx-chip:hover { background: #f8fafc; border-color: #bfdbfe; color: #1e293b; }
+    :is(#task, #pretraining) .dx-chip:active { transform: scale(0.96); }
+    :is(#task, #pretraining) .dx-chip.active { background: color-mix(in srgb, var(--src), #fff 90%); border-color: color-mix(in srgb, var(--src), #fff 25%); color: color-mix(in srgb, var(--src), #000 22%); }
+    :is(#task, #pretraining) .dx-readout { display: flex; align-items: flex-start; gap: 12px; background: color-mix(in srgb, var(--src), #fff 94%); border-radius: 12px; padding: 13px 16px; margin-top: 2px; }
+    :is(#task, #pretraining) .dx-readout-bar { flex-shrink: 0; width: 3px; align-self: stretch; border-radius: 3px; background: var(--src); }
+    :is(#task, #pretraining) .dx-readout-text { flex: 1; min-width: 0; }
+    :is(#task, #pretraining) .dx-task-desc { font-family: var(--default-font); font-size: 18.5px; line-height: 1.55; color: #334155; text-wrap: pretty; }
 
-    #task .dx-grid-bleed { width: auto; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 0 clamp(16px, 4vw, 56px); box-sizing: border-box; }
-    #task .dx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 360px)); justify-content: center; gap: 26px; }
-    #task .dx-card { background: #fff; border: 1px solid var(--dx-line); border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(33,31,69,0.04), 0 8px 22px rgba(33,31,69,0.06); transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease; }
-    #task .dx-card:hover, #task .dx-card:focus-visible { box-shadow: 0 2px 4px rgba(33,31,69,0.05), 0 24px 50px rgba(33,31,69,0.15); transform: translateY(-4px); border-color: color-mix(in srgb, var(--src), #fff 45%); outline: none; }
-    #task .dx-card:focus-visible { border-color: var(--src); }
-    #task .dx-card:active { transform: translateY(-4px) scale(0.985); }
-    #task .dx-thumb-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #f1f5f9; overflow: hidden; }
-    #task .dx-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; outline: 1px solid rgba(0,0,0,0.06); outline-offset: -1px; }
-    #task .dx-card:hover .dx-thumb { transform: scale(1.04); }
-    #task .dx-frame-idx { position: absolute; top: 10px; left: 10px; font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; color: #fff; background: rgba(20,18,43,0.55); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
-    #task .dx-frame-idx::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--src); box-shadow: 0 0 0 3px color-mix(in srgb, var(--src), transparent 65%); }
-    #task .dx-thumb-wrap::before, #task .dx-thumb-wrap::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid #fff; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
-    #task .dx-thumb-wrap::before { top: 9px; left: 9px; border-right: none; border-bottom: none; }
-    #task .dx-thumb-wrap::after { bottom: 9px; right: 9px; border-left: none; border-top: none; }
-    #task .dx-card:hover .dx-thumb-wrap::before, #task .dx-card:hover .dx-thumb-wrap::after,
-    #task .dx-card:focus-visible .dx-thumb-wrap::before, #task .dx-card:focus-visible .dx-thumb-wrap::after { opacity: 0.85; }
-    #task .dx-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
-    #task .dx-card-q { font-size: 17px; color: #1a2744; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    #task .dx-card-meta { display: flex; align-items: center; gap: 8px; margin-top: auto; }
-    #task .dx-badge { font-family: var(--heading-font); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; padding: 4px 11px; border-radius: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #task .dx-badge-ans { background: #f0fdf4; color: #0d9488; max-width: 72%; }
-    #task .dx-badge-img { background: color-mix(in srgb, var(--src), #fff 90%); color: color-mix(in srgb, var(--src), #000 22%); flex-shrink: 0; font-variant-numeric: tabular-nums; }
-    #task .dx-alert { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; color: #b3261e; background: #fdeceb; border: 1px solid #f2c3bf; border-left: 4px solid #d1362b; padding: 15px 18px; border-radius: 0 12px 12px 0; margin: 0 0 30px; }
-    #task .dx-alert::before { content: "\F33A"; font-family: "bootstrap-icons"; font-size: 18px; line-height: 1.3; color: #d1362b; flex-shrink: 0; }
-    #task .dx-alert a { color: #b3261e; font-weight: 700; text-decoration: underline; }
-    #task .dx-alert a:hover { color: #8f1b15; }
+    :is(#task, #pretraining) .dx-grid-bleed { width: auto; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 0 clamp(16px, 4vw, 56px); box-sizing: border-box; }
+    :is(#task, #pretraining) .dx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 360px)); justify-content: center; gap: 26px; }
+    :is(#task, #pretraining) .dx-card { background: #fff; border: 1px solid var(--dx-line); border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(33,31,69,0.04), 0 8px 22px rgba(33,31,69,0.06); transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease; }
+    :is(#task, #pretraining) .dx-card:hover, :is(#task, #pretraining) .dx-card:focus-visible { box-shadow: 0 2px 4px rgba(33,31,69,0.05), 0 24px 50px rgba(33,31,69,0.15); transform: translateY(-4px); border-color: color-mix(in srgb, var(--src), #fff 45%); outline: none; }
+    :is(#task, #pretraining) .dx-card:focus-visible { border-color: var(--src); }
+    :is(#task, #pretraining) .dx-card:active { transform: translateY(-4px) scale(0.985); }
+    :is(#task, #pretraining) .dx-thumb-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #f1f5f9; overflow: hidden; }
+    :is(#task, #pretraining) .dx-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; outline: 1px solid rgba(0,0,0,0.06); outline-offset: -1px; }
+    :is(#task, #pretraining) .dx-card:hover .dx-thumb { transform: scale(1.04); }
+    :is(#task, #pretraining) .dx-frame-idx { position: absolute; top: 10px; left: 10px; font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; color: #fff; background: rgba(20,18,43,0.55); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+    :is(#task, #pretraining) .dx-frame-idx::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--src); box-shadow: 0 0 0 3px color-mix(in srgb, var(--src), transparent 65%); }
+    :is(#task, #pretraining) .dx-thumb-wrap::before, :is(#task, #pretraining) .dx-thumb-wrap::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid #fff; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+    :is(#task, #pretraining) .dx-thumb-wrap::before { top: 9px; left: 9px; border-right: none; border-bottom: none; }
+    :is(#task, #pretraining) .dx-thumb-wrap::after { bottom: 9px; right: 9px; border-left: none; border-top: none; }
+    :is(#task, #pretraining) .dx-card:hover .dx-thumb-wrap::before, :is(#task, #pretraining) .dx-card:hover .dx-thumb-wrap::after,
+    :is(#task, #pretraining) .dx-card:focus-visible .dx-thumb-wrap::before, :is(#task, #pretraining) .dx-card:focus-visible .dx-thumb-wrap::after { opacity: 0.85; }
+    :is(#task, #pretraining) .dx-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
+    :is(#task, #pretraining) .dx-card-q { font-size: 17px; color: #1a2744; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    :is(#task, #pretraining) .dx-card-meta { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+    :is(#task, #pretraining) .dx-badge { font-family: var(--heading-font); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; padding: 4px 11px; border-radius: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    :is(#task, #pretraining) .dx-badge-ans { background: #f0fdf4; color: #0d9488; max-width: 72%; }
+    :is(#task, #pretraining) .dx-badge-img { background: color-mix(in srgb, var(--src), #fff 90%); color: color-mix(in srgb, var(--src), #000 22%); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    :is(#task, #pretraining) .dx-alert { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; color: #b3261e; background: #fdeceb; border: 1px solid #f2c3bf; border-left: 4px solid #d1362b; padding: 15px 18px; border-radius: 0 12px 12px 0; margin: 0 0 30px; }
+    :is(#task, #pretraining) .dx-alert::before { content: "\F33A"; font-family: "bootstrap-icons"; font-size: 18px; line-height: 1.3; color: #d1362b; flex-shrink: 0; }
+    :is(#task, #pretraining) .dx-alert a { color: #b3261e; font-weight: 700; text-decoration: underline; }
+    :is(#task, #pretraining) .dx-alert a:hover { color: #8f1b15; }
 
     .dx-empty, .dx-loading { grid-column: 1 / -1; color: #94a3b8; font-size: 17px; padding: 56px 0; text-align: center; }
     .dx-loading { display: flex; align-items: center; justify-content: center; gap: 12px; }
@@ -497,18 +498,18 @@
     @media (max-width: 760px) { .dx-stimulus { max-width: 100%; } .dx-body { gap: 18px; } .dx-choices { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
 
     @media (prefers-reduced-motion: no-preference) {
-      #task .dx-card { animation: dxCardIn 0.32s ease both; }
+      :is(#task, #pretraining) .dx-card { animation: dxCardIn 0.32s ease both; }
       @keyframes dxCardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
     }
     @media (prefers-reduced-motion: reduce) {
-      #task .dx-card, .dx-modal, .dx-spinner { animation: none !important; }
+      :is(#task, #pretraining) .dx-card, .dx-modal, .dx-spinner { animation: none !important; }
     }
     @media (max-width: 575px) {
-      #task .dx-grid-bleed { padding: 0 12px; }
-      #task .dx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); gap: 14px; }
-      #task .dx-toolbar { padding: 18px 16px; }
-      #task .dx-task-desc { font-size: 17px; }
-      #task .dx-ds { padding: 16px 16px 15px; }
+      :is(#task, #pretraining) .dx-grid-bleed { padding: 0 12px; }
+      :is(#task, #pretraining) .dx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); gap: 14px; }
+      :is(#task, #pretraining) .dx-toolbar { padding: 18px 16px; }
+      :is(#task, #pretraining) .dx-task-desc { font-size: 17px; }
+      :is(#task, #pretraining) .dx-ds { padding: 16px 16px 15px; }
       .dx-modal { padding: 26px 20px 28px; }
     }
 
@@ -778,11 +779,64 @@
   <section id="pretraining">
     <div class="section-label">Training Data</div>
     <h2>Pretraining</h2>
-    <p>[Placeholder: describe the pretraining data — sources, scale, how to download, and any usage restrictions.]</p>
+    <p>Pretrain on egocentric video streams from three sources. Browse sample items from the pretraining corpus below.</p>
 
     <div class="dataset-meta" style="flex-direction:column;align-items:flex-start;">
       <span class="meta-pill">📦 Access the full dataset — link coming soon</span>
       <a href="https://shawnking98.github.io/BabyVLM-v2/" target="_blank" rel="noopener" class="meta-pill" style="text-decoration:none;background:#f0fdf4;border-color:#6ee7b7;color:#065f46;">📄 Complete methodology — BabyVLM-V2</a>
+    </div>
+
+    <div class="dx-eyebrow dx-eyebrow-lg">Sources &amp; Their Role</div>
+    <div class="dx-registry" role="tablist" aria-label="Choose a pretraining source">
+      <div class="dx-ds" data-source="saycam" tabindex="0" role="tab" aria-selected="false">
+        <div class="dx-ds-head">
+          <span class="dx-ds-name">SAYCam</span>
+          <span class="dx-ds-prov">Primary Source</span>
+        </div>
+        <div class="dx-ds-desc">Longitudinal infant head&#8209;cam footage — the core pretraining distribution.</div>
+        <div class="dx-ds-stats">
+          <span class="dx-ds-stat"><b>10</b>tasks</span>
+          <span class="dx-ds-stat"><b>3</b>splits</span>
+        </div>
+      </div>
+      <div class="dx-ds" data-source="babyview" tabindex="0" role="tab" aria-selected="false">
+        <div class="dx-ds-head">
+          <span class="dx-ds-name">BabyView</span>
+          <span class="dx-ds-prov">Egocentric</span>
+        </div>
+        <div class="dx-ds-desc">A second longitudinal infant head&#8209;cam corpus, alongside SAYCam.</div>
+        <div class="dx-ds-stats">
+          <span class="dx-ds-stat"><b>4</b>tasks</span>
+        </div>
+      </div>
+      <div class="dx-ds" data-source="ego4d" tabindex="0" role="tab" aria-selected="false">
+        <div class="dx-ds-head">
+          <span class="dx-ds-name">Ego4D</span>
+          <span class="dx-ds-prov">Adult Egocentric</span>
+        </div>
+        <div class="dx-ds-desc">Adult egocentric video — broadens pretraining diversity beyond infant footage.</div>
+        <div class="dx-ds-stats">
+          <span class="dx-ds-stat"><b>10</b>tasks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dx-split-row" id="ptSplitWrap" style="display:none;margin-bottom:20px;">
+      <div class="dx-eyebrow dx-eyebrow-lg" style="margin-bottom:12px;">Split</div>
+      <div class="dx-tab-row" id="ptSplitTabs"></div>
+    </div>
+    <div class="dx-eyebrow dx-eyebrow-lg" style="margin-bottom:14px;">Task</div>
+    <div class="dx-chip-row" id="ptTaskChips"></div>
+    <div class="dx-readout" style="margin-bottom:26px;">
+      <span class="dx-readout-bar"></span>
+      <div class="dx-readout-text">
+        <div class="dx-task-desc" id="ptTaskDesc"></div>
+      </div>
+    </div>
+
+    <div class="dx-eyebrow" style="margin-top:36px;">Samples</div>
+    <div class="dx-grid-bleed">
+      <div id="ptGrid" class="dx-grid"></div>
     </div>
   </section>
 
@@ -1101,7 +1155,7 @@
     return img;
   }
 
-  const registryCards = document.querySelectorAll('.dx-ds');
+  const registryCards = document.querySelectorAll('#task .dx-ds');
   registryCards.forEach(card => {
     const jump = () => {
       const key = card.dataset.source;
@@ -1488,6 +1542,329 @@
   document.getElementById('dxModalClose').onclick = closeModal;
   overlay.onclick = (e) => { if (e.target === overlay) closeModal(); };
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  renderAll();
+})();
+</script>
+
+<!-- Pretraining Data Viewer -->
+<script>
+(function () {
+  const TASK_INFO = {
+    'count':                  { label: 'Count',              desc: 'Object counting — how many of a given object appear in the frame.' },
+    'memory':                 { label: 'Memory',             desc: 'Recognition memory — touch the newly seen image across a growing sequence.' },
+    'vdr-binary':             { label: 'VDR (Binary)',       desc: 'Visual delayed response — did the object move left or right?' },
+    'vdr-open':               { label: 'VDR (Open)',         desc: 'Visual delayed response — describe the object\'s motion in open-ended terms.' },
+    'localize':               { label: 'Localize',           desc: 'Object localization — which quadrant of the frame contains the target?' },
+    'leftright':              { label: 'Left/Right',         desc: 'Spatial reasoning — is the target object to the left or right?' },
+    'picture_vocabulary':     { label: 'Picture Vocabulary', desc: 'Receptive vocabulary — pick the image that matches the spoken word.' },
+    'spatialdetails':         { label: 'Spatial Details',    desc: 'Fine-grained spatial reasoning about object arrangement.' },
+    'spatial':                { label: 'Spatial',            desc: 'Spatial matching — which option contains exactly this object?' },
+    'compare_synthetic':      { label: 'Compare (Synthetic)',desc: 'Quantity comparison — which image has more of the object (synthetic).' },
+    'compare_real':           { label: 'Compare (Naturalistic)', desc: 'Quantity comparison — which image has more of the object (naturalistic).' },
+    'who_has_more':           { label: 'Who Has More',       desc: 'Quantity comparison — which image contains more of the object.' },
+    'vdr':                    { label: 'Visual Delayed Response', desc: 'Visual delayed response — track the object across frames and report its motion.' },
+    'whohasmore_synthetic':   { label: 'Who Has More',       desc: 'Quantity comparison — which image contains more of the object.' },
+  };
+  const SPLIT_LABELS = { train: 'Training', val: 'Validation', test: 'Testing' };
+  const EGO4D_TASKS    = ['count','memory','vdr-binary','vdr-open','localize','leftright','picture_vocabulary','spatialdetails','compare_synthetic','compare_real'];
+  const BABYVIEW_TASKS = ['count','leftright','localize','whohasmore_synthetic'];
+
+  const SOURCES = {
+    saycam:   { label: 'SAYCam',   color: '#0d9488', tasks: EGO4D_TASKS,    splits: ['train','val','test'], base: (t,s) => `data/saycam_data_sample/${s}/${t}` },
+    babyview: { label: 'BabyView', color: '#1d4ed8', tasks: BABYVIEW_TASKS, splits: null,                    base: (t)   => `data/babyview_sample/${t}` },
+    ego4d:    { label: 'Ego4D',    color: '#2563eb', tasks: EGO4D_TASKS,    splits: null,                    base: (t)   => `data/ego4d_sample/${t}` },
+  };
+
+  const CURATED = {
+    "saycam/train/compare_real": [0, 2, 4], "saycam/train/compare_synthetic": [0, 1, 2],
+    "saycam/train/count": [0, 1, 2], "saycam/train/leftright": [0, 1, 3],
+    "saycam/train/localize": [0, 2, 3], "saycam/train/memory": [1, 5, 6],
+    "saycam/train/picture_vocabulary": [1, 4], "saycam/train/spatialdetails": [1, 3, 4],
+    "saycam/train/vdr-binary": [0, 1, 2], "saycam/train/vdr-open": [0, 1, 2],
+    "saycam/val/compare_real": [5, 6, 7], "saycam/val/compare_synthetic": [0, 2, 3],
+    "saycam/val/count": [0, 1, 2], "saycam/val/leftright": [1, 2, 3],
+    "saycam/val/localize": [1, 2, 4], "saycam/val/memory": [0, 3, 4],
+    "saycam/val/picture_vocabulary": [1, 2, 4], "saycam/val/spatialdetails": [0, 2, 3],
+    "saycam/val/vdr-binary": [0, 1, 2], "saycam/val/vdr-open": [0, 1, 2],
+    "saycam/test/compare_real": [0, 1, 2], "saycam/test/compare_synthetic": [0, 3, 4],
+    "saycam/test/count": [0, 2, 3], "saycam/test/leftright": [1, 2, 3],
+    "saycam/test/localize": [0, 1, 2], "saycam/test/memory": [1, 2, 5],
+    "saycam/test/picture_vocabulary": [0, 1, 3], "saycam/test/spatialdetails": [1, 2, 4],
+    "saycam/test/vdr-binary": [0, 1, 2], "saycam/test/vdr-open": [0, 1, 2],
+    "babyview//count": [0, 3, 6], "babyview//leftright": [0, 3, 6],
+    "babyview//localize": [0, 3, 6], "babyview//whohasmore_synthetic": [0, 3, 6],
+    "ego4d//compare_real": [0, 1, 2], "ego4d//compare_synthetic": [0, 1, 2],
+    "ego4d//count": [0, 1, 2], "ego4d//leftright": [0, 1, 2],
+    "ego4d//localize": [0, 1, 2], "ego4d//memory": [0, 1, 2],
+    "ego4d//picture_vocabulary": [0, 1, 2], "ego4d//spatialdetails": [0, 1, 2],
+    "ego4d//vdr-binary": [0, 1, 2], "ego4d//vdr-open": [0, 1, 2],
+  };
+  function curatedFor(source, split, task) {
+    const s = SOURCES[source];
+    const key = `${source}/${s.splits ? split : ''}/${task}`;
+    return CURATED[key] || null;
+  }
+
+  const state = { source: 'saycam', split: 'train', task: null };
+
+  const section      = document.getElementById('pretraining');
+  const splitWrap    = document.getElementById('ptSplitWrap');
+  const splitTabs    = document.getElementById('ptSplitTabs');
+  const taskChips    = document.getElementById('ptTaskChips');
+  const taskDescEl   = document.getElementById('ptTaskDesc');
+  const grid         = document.getElementById('ptGrid');
+  const overlay      = document.getElementById('dxOverlay');
+  const modalContent = document.getElementById('dxModalContent');
+  if (!grid) return;
+
+  function basePath() {
+    const s = SOURCES[state.source];
+    return s.splits ? s.base(state.task, state.split) : s.base(state.task);
+  }
+  function imgUrl(rel) { return `${basePath()}/${rel}`; }
+  function cleanText(t) { return t.replace(/<image>/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function firstHumanQuestion(item) {
+    const h = item.conversations.find(c => c.from === 'human');
+    return h ? cleanText(h.value) : '';
+  }
+  function gtAnswer(item) {
+    const g = [...item.conversations].reverse().find(c => c.from === 'gpt');
+    return g ? g.value.trim() : '?';
+  }
+  function gtAnswerText(item) {
+    const letter = gtAnswer(item);
+    if (!/^[A-Za-z]$/.test(letter)) return letter;
+    const human = item.conversations.find(c => c.from === 'human');
+    if (!human) return letter;
+    const choices = parseTextChoices(human.value);
+    const match = choices.find(c => c.label === letter.toUpperCase());
+    return match ? match.text : letter;
+  }
+
+  const PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="116" height="86"><rect width="116" height="86" fill="#efedf8"/><text x="58" y="46" font-size="9" fill="#9c99bd" text-anchor="middle" font-family="sans-serif">image n/a</text></svg>'
+  );
+  function createThrottle(limit) {
+    let active = 0; const queue = [];
+    function next() {
+      if (active >= limit || !queue.length) return;
+      active++;
+      const { fn, resolve } = queue.shift();
+      fn().then(v => { active--; resolve(v); next(); });
+    }
+    return (fn) => new Promise((resolve) => { queue.push({ fn, resolve }); next(); });
+  }
+  const imgThrottle = createThrottle(2);
+
+  function makeImg(rel) {
+    const img = document.createElement('img');
+    img.alt = rel;
+    imgThrottle(() => new Promise((resolve) => {
+      img.onload = () => resolve();
+      img.onerror = () => { img.onerror = null; img.classList.add('dx-broken'); img.src = PLACEHOLDER; resolve(); };
+      img.src = imgUrl(rel);
+    }));
+    return img;
+  }
+
+  function optLabel(seg) {
+    const m = (seg || '').match(/\(\s*([A-Za-z0-9])\s*\)/);
+    return m ? m[1].toUpperCase() : '';
+  }
+  function parseTextChoices(raw) {
+    const out = []; const re = /\(([A-Za-z0-9])\)\s*([^()]*)/g; let m;
+    while ((m = re.exec(raw)) !== null) {
+      let t = m[2].split(/\brespond\b|\banswer\b|\bchoose\b/i)[0];
+      t = t.replace(/<image>/g, ' ').replace(/\s*\bor\b\s*$/i, '').replace(/\s*of the (image|frame)\b.*$/i, '').replace(/[?.:,]+\s*$/, '').replace(/\s+/g, ' ').trim();
+      out.push({ label: m[1].toUpperCase(), text: t });
+    }
+    return out;
+  }
+  function isOrdinalFiller(t) {
+    return /^(the\s+)?(first|second|third|fourth|fifth|sixth|1st|2nd|3rd|4th|5th|6th)(\s+image)?$/i.test((t || '').trim());
+  }
+  function bubbleEl(text) { const b = document.createElement('div'); b.className = 'dx-bubble'; b.textContent = text; return b; }
+  function mediaCell(rel, label) {
+    const cell = document.createElement('figure'); cell.className = 'dx-media-cell'; cell.appendChild(makeImg(rel));
+    if (label) { const cap = document.createElement('figcaption'); cap.className = 'dx-media-label'; cap.textContent = label; cell.appendChild(cap); }
+    return cell;
+  }
+  function colLabel(text) { const d = document.createElement('div'); d.className = 'dx-col-label'; d.textContent = text; return d; }
+  function choiceBadge(label) { const b = document.createElement('div'); b.className = 'dx-choice-badge'; b.textContent = label; return b; }
+  function tickEl(withWord) { const t = document.createElement('span'); t.className = 'dx-tick'; t.textContent = withWord ? '✓ correct' : '✓'; t.setAttribute('aria-label', 'correct answer'); return t; }
+  function choiceCard(label, rel, caption, isCorrect) {
+    const c = document.createElement('div');
+    c.className = 'dx-choice-card' + (isCorrect ? ' correct' : '') + (rel ? '' : ' text-only');
+    if (rel) { const img = makeImg(rel); img.className = 'dx-choice-thumb'; c.appendChild(img); }
+    const foot = document.createElement('div'); foot.className = 'dx-choice-foot'; foot.appendChild(choiceBadge(label));
+    if (caption) { const t = document.createElement('div'); t.className = 'dx-choice-text'; t.textContent = caption; foot.appendChild(t); }
+    if (isCorrect) foot.appendChild(tickEl(!rel));
+    c.appendChild(foot); return c;
+  }
+
+  function answerImageRel(item) {
+    const images = item.image || [];
+    if (!images.length) return '';
+    const conv = item.conversations || [];
+    if (conv.filter(c => c.from === 'human').length > 1) return images[0];
+    const human = conv.find(c => c.from === 'human') || { value: '' };
+    const gptTurn = [...conv].reverse().find(c => c.from === 'gpt');
+    const answer = gptTurn ? gptTurn.value.trim() : '';
+    const answerLetter = /^[A-Za-z0-9]$/.test(answer) ? answer.toUpperCase() : '';
+    if (!answerLetter) return images[0];
+    const parts = human.value.split('<image>');
+    const nImg = parts.length - 1;
+    const stim = [], optImgs = [];
+    for (let k = 0; k < nImg && k < images.length; k++) {
+      const lab = optLabel(parts[k]);
+      if (lab) optImgs.push({ label: lab, rel: images[k] });
+      else stim.push(images[k]);
+    }
+    if (optImgs.length) { const hit = optImgs.find(o => o.label === answerLetter); return hit ? hit.rel : images[0]; }
+    if (stim.length > 1) { const tc = parseTextChoices(human.value); if (tc.length === stim.length) { const idx = tc.findIndex(o => o.label === answerLetter); if (idx >= 0) return stim[idx]; } }
+    return images[0];
+  }
+
+  function makeCard(item, i) {
+    const card = document.createElement('div');
+    card.className = 'dx-card'; card.tabIndex = 0; card.setAttribute('role', 'button');
+    card.style.animationDelay = Math.min(i * 35, 400) + 'ms';
+    const wrap = document.createElement('div'); wrap.className = 'dx-thumb-wrap';
+    const thumbRel = item.gif || answerImageRel(item) || '';
+    const thumb = makeImg(thumbRel); thumb.className = 'dx-thumb'; wrap.appendChild(thumb);
+    const idx = document.createElement('span'); idx.className = 'dx-frame-idx'; idx.textContent = String(i + 1).padStart(2, '0'); wrap.appendChild(idx);
+    card.appendChild(wrap);
+    const body = document.createElement('div'); body.className = 'dx-card-body';
+    const q = document.createElement('div'); q.className = 'dx-card-q'; q.textContent = firstHumanQuestion(item); body.appendChild(q);
+    const meta = document.createElement('div'); meta.className = 'dx-card-meta';
+    const ans = document.createElement('span'); ans.className = 'dx-badge dx-badge-ans'; ans.textContent = 'Answer: ' + gtAnswerText(item); meta.appendChild(ans);
+    const nimg = (item.image || []).length;
+    const ib = document.createElement('span'); ib.className = 'dx-badge dx-badge-img'; ib.textContent = item.gif ? (nimg + ' frames') : (nimg + (nimg === 1 ? ' img' : ' imgs')); meta.appendChild(ib);
+    body.appendChild(meta); card.appendChild(body);
+    const open = () => openModal(item);
+    card.onclick = open; card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } };
+    return card;
+  }
+
+  function renderSequential(item) {
+    const frag = document.createDocumentFragment(); const images = item.image || []; let imgIdx = 0;
+    for (const turn of item.conversations) {
+      const wrap = document.createElement('div'); wrap.className = 'dx-turn ' + (turn.from === 'gpt' ? 'dx-gpt' : 'dx-human');
+      const role = document.createElement('div'); role.className = 'dx-turn-role'; role.textContent = turn.from === 'gpt' ? 'Answer' : 'Prompt'; wrap.appendChild(role);
+      const parts = turn.value.split('<image>'); const nImg = parts.length - 1; const q = cleanText(turn.value);
+      if (q) wrap.appendChild(bubbleEl(q));
+      if (nImg >= 1) { const row = document.createElement('div'); row.className = 'dx-media-row'; for (let i = 0; i < nImg && imgIdx < images.length; i++) row.appendChild(mediaCell(images[imgIdx++], optLabel(parts[i]))); wrap.appendChild(row); }
+      frag.appendChild(wrap);
+    }
+    return frag;
+  }
+
+  function renderSample(item) {
+    const conv = item.conversations || [];
+    if (conv.filter(c => c.from === 'human').length > 1) return renderSequential(item);
+    const human = conv.find(c => c.from === 'human') || { value: '' };
+    const gptTurn = [...conv].reverse().find(c => c.from === 'gpt');
+    const answer = gptTurn ? gptTurn.value.trim() : '';
+    const answerLetter = /^[A-Za-z0-9]$/.test(answer) ? answer.toUpperCase() : '';
+    const images = item.image || []; const parts = human.value.split('<image>'); const nImg = parts.length - 1;
+    const stim = [], optImgs = [];
+    for (let i = 0; i < nImg && i < images.length; i++) { const lab = optLabel(parts[i]); if (lab) optImgs.push({ label: lab, rel: images[i] }); else stim.push(images[i]); }
+    const textChoices = optImgs.length ? [] : parseTextChoices(human.value);
+    const bunchedChoices = (!optImgs.length && stim.length > 1 && stim.length === textChoices.length)
+      ? stim.map((rel, i) => ({ label: textChoices[i].label, rel, caption: isOrdinalFiller(textChoices[i].text) ? '' : textChoices[i].text })) : null;
+    const g = document.createElement('div'); g.className = 'dx-sample';
+    const pb = document.createElement('div'); pb.appendChild(colLabel('Prompt'));
+    const pt = document.createElement('div'); pt.className = 'dx-prompt-text'; pt.textContent = cleanText(human.value); pb.appendChild(pt); g.appendChild(pb);
+    if (bunchedChoices) {
+      const full = document.createElement('div'); full.className = 'dx-full-grid'; full.appendChild(colLabel('Answer choices'));
+      const box = document.createElement('div'); box.className = 'dx-choices';
+      for (const o of bunchedChoices) box.appendChild(choiceCard(o.label, o.rel, o.caption, o.label === answerLetter));
+      full.appendChild(box); g.appendChild(full);
+      const frag = document.createDocumentFragment(); frag.appendChild(g); return frag;
+    }
+    const body = document.createElement('div'); body.className = 'dx-body';
+    if (item.gif) { const s = document.createElement('div'); s.className = 'dx-stimulus'; s.appendChild(makeImg(item.gif)); const cap = document.createElement('div'); cap.className = 'dx-seq-cap'; cap.textContent = 'Animated sequence — ' + images.length + ' frames'; s.appendChild(cap); body.appendChild(s); }
+    else { for (const rel of stim) { const s = document.createElement('div'); s.className = 'dx-stimulus'; s.appendChild(makeImg(rel)); body.appendChild(s); } }
+    const right = document.createElement('div'); right.className = 'dx-col-right';
+    if (optImgs.length) { right.appendChild(colLabel('Answer choices')); const box = document.createElement('div'); box.className = 'dx-choices'; for (const o of optImgs) box.appendChild(choiceCard(o.label, o.rel, '', o.label === answerLetter)); right.appendChild(box); }
+    else if (textChoices.length >= 2) { right.appendChild(colLabel('Answer choices')); const box = document.createElement('div'); box.className = 'dx-choices'; for (const o of textChoices) box.appendChild(choiceCard(o.label, null, o.text || ('Option ' + o.label), o.label === answerLetter)); right.appendChild(box); }
+    else { right.appendChild(colLabel('Answer')); const card = document.createElement('div'); card.className = 'dx-answer-card'; card.textContent = answer || '—'; right.appendChild(card); }
+    body.appendChild(right); g.appendChild(body);
+    const frag = document.createDocumentFragment(); frag.appendChild(g); return frag;
+  }
+
+  function openModal(item) {
+    modalContent.innerHTML = '';
+    const s = SOURCES[state.source];
+    const info = TASK_INFO[state.task] || { label: state.task };
+    const tag = document.createElement('div'); tag.className = 'dx-modal-tag';
+    tag.textContent = `${s.label} · ${info.label}` + (s.splits ? ` · ${SPLIT_LABELS[state.split] || state.split}` : '');
+    modalContent.appendChild(tag);
+    const idEl = document.createElement('div'); idEl.className = 'dx-modal-id'; idEl.textContent = 'id: ' + (item.id || '—'); modalContent.appendChild(idEl);
+    modalContent.appendChild(renderSample(item));
+    overlay.classList.add('open'); document.body.style.overflow = 'hidden';
+    document.getElementById('dxModalClose').focus();
+  }
+
+  const registryCards = document.querySelectorAll('#pretraining .dx-ds');
+  registryCards.forEach(card => {
+    const jump = () => { const key = card.dataset.source; if (!SOURCES[key] || key === state.source) return; state.source = key; state.task = null; renderAll(); };
+    card.addEventListener('click', jump);
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });
+  });
+  function syncRegistry() {
+    registryCards.forEach(card => { const on = card.dataset.source === state.source; card.classList.toggle('current', on); card.setAttribute('aria-selected', on ? 'true' : 'false'); });
+    section.style.setProperty('--src', SOURCES[state.source].color);
+  }
+  function renderSplitTabs() {
+    const splits = SOURCES[state.source].splits;
+    if (!splits) { splitWrap.style.display = 'none'; return; }
+    splitWrap.style.display = '';
+    splitTabs.innerHTML = '';
+    for (const sp of splits) {
+      const b = document.createElement('button'); b.className = 'dx-tab' + (sp === state.split ? ' active' : ''); b.textContent = SPLIT_LABELS[sp] || sp;
+      b.onclick = () => { state.split = sp; renderSplitTabs(); loadTask(); }; splitTabs.appendChild(b);
+    }
+  }
+  function renderTaskChips() {
+    const tasks = SOURCES[state.source].tasks;
+    if (!state.task || !tasks.includes(state.task)) state.task = tasks[0];
+    taskChips.innerHTML = '';
+    for (const t of tasks) {
+      const info = TASK_INFO[t] || { label: t };
+      const b = document.createElement('button'); b.className = 'dx-chip' + (t === state.task ? ' active' : ''); b.textContent = info.label;
+      b.onclick = () => { state.task = t; renderTaskChips(); loadTask(); }; taskChips.appendChild(b);
+    }
+    taskDescEl.textContent = (TASK_INFO[state.task] || {}).desc || '';
+  }
+  function renderAll() { syncRegistry(); renderSplitTabs(); renderTaskChips(); loadTask(); }
+
+  async function fetchJsonWithRetry(url, attempts = 3) {
+    let lastErr;
+    for (let i = 0; i < attempts; i++) {
+      try { const res = await fetch(url); if (!res.ok) throw new Error(`HTTP ${res.status}`); return await res.json(); }
+      catch (e) { lastErr = e; if (i < attempts - 1) await new Promise(r => setTimeout(r, 300 * (i + 1))); }
+    }
+    throw lastErr;
+  }
+
+  async function loadTask() {
+    grid.innerHTML = '<div class="dx-loading"><span class="dx-spinner"></span>Loading samples…</div>';
+    const url = `${basePath()}/data.json`;
+    let data;
+    try { data = await fetchJsonWithRetry(url); } catch (e) {
+      grid.innerHTML = `<div class="dx-empty">Couldn't load <code>${url}</code>: ${e.message || e}.</div>`; return;
+    }
+    if (!Array.isArray(data)) data = [data];
+    if (!data.length) { grid.innerHTML = '<div class="dx-empty">No samples for this task yet.</div>'; return; }
+    const pick = curatedFor(state.source, state.split, state.task);
+    if (pick) data = pick.filter(i => i < data.length).map(i => data[i]);
+    data = data.slice(0, 3);
+    if (!data.length) { grid.innerHTML = '<div class="dx-empty">No samples available for this task yet.</div>'; return; }
+    grid.innerHTML = '';
+    data.forEach((item, i) => grid.appendChild(makeCard(item, i)));
+  }
 
   renderAll();
 })();
