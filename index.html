@@ -566,52 +566,78 @@
     /* ── Committee ───────────────────────────────────────────────── */
     .committee-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.75rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
+    @media (max-width: 860px) { .committee-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .committee-grid { grid-template-columns: 1fr 1fr; gap: 1rem; } }
 
     .committee-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: .75rem;
+      background: #fff;
+      border: 1px solid var(--gray-2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .committee-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+      transform: translateY(-3px);
+    }
+
+    .committee-photo-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--blue-lt);
     }
 
     .committee-avatar {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 3px solid var(--gray-2);
+      object-position: center top;
+      display: block;
     }
 
     .committee-initials {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: var(--blue-lt);
-      border: 3px solid var(--gray-2);
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: 800;
       color: var(--blue);
-      flex-shrink: 0;
+      letter-spacing: .05em;
+    }
+
+    .committee-info {
+      padding: .9rem 1rem 1rem;
+      text-align: center;
     }
 
     .committee-name {
       font-weight: 700;
-      font-size: .95rem;
+      font-size: 1rem;
       color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .committee-role {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-top: .2rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
 
     .committee-affil {
       font-size: .825rem;
       color: var(--gray-4);
-      margin-top: -.5rem;
+      margin-top: .2rem;
     }
 
     /* ── Footer ───────────────────────────────────────────────────── */
@@ -921,46 +947,54 @@
   <section id="committee">
     <div class="section-label">Leadership</div>
     <h2>Challenge Steering Committee</h2>
-    <p>Confirmed advisors guiding the scientific direction of the challenge.</p>
+    <p>Confirmed advisors guiding the scientific direction and evaluation design of the challenge.</p>
     <div class="committee-grid">
 
       <div class="committee-card">
-        <img src="assets/img/people/frank.jpg" alt="Michael C. Frank" class="committee-avatar">
-        <div>
+        <div class="committee-photo-wrap">
+          <img src="assets/img/people/frank.jpg" alt="Michael C. Frank" class="committee-avatar">
+        </div>
+        <div class="committee-info">
           <div class="committee-name">Michael C. Frank</div>
-          <div class="committee-affil">Psychology, Stanford</div>
+          <div class="committee-role">Psychology</div>
+          <div class="committee-affil">Stanford University</div>
         </div>
       </div>
 
       <div class="committee-card">
-        <div class="committee-initials">CY</div>
-        <div>
+        <div class="committee-photo-wrap">
+          <div class="committee-initials">CY</div>
+        </div>
+        <div class="committee-info">
           <div class="committee-name">Chen Yu</div>
-          <div class="committee-affil">Psychology, UT Austin</div>
+          <div class="committee-role">Psychology</div>
+          <div class="committee-affil">UT Austin</div>
         </div>
       </div>
 
       <div class="committee-card">
-        <img src="assets/img/people/grauman.jpg" alt="Kristen Grauman" class="committee-avatar">
-        <div>
+        <div class="committee-photo-wrap">
+          <img src="assets/img/people/grauman.jpg" alt="Kristen Grauman" class="committee-avatar">
+        </div>
+        <div class="committee-info">
           <div class="committee-name">Kristen Grauman</div>
-          <div class="committee-affil">CS, UT Austin</div>
+          <div class="committee-role">Computer Science</div>
+          <div class="committee-affil">UT Austin</div>
         </div>
       </div>
 
       <div class="committee-card">
-        <div class="committee-initials">KS</div>
-        <div>
+        <div class="committee-photo-wrap">
+          <div class="committee-initials">KS</div>
+        </div>
+        <div class="committee-info">
           <div class="committee-name">Kate Saenko</div>
-          <div class="committee-affil">CS, Boston University</div>
+          <div class="committee-role">Computer Science</div>
+          <div class="committee-affil">Boston University</div>
         </div>
       </div>
 
     </div>
-
-    <h2 style="margin-top:2.5rem;">Technical Committee</h2>
-    <p>Who to contact with any technical questions or suggestions.</p>
-    <p>[Placeholder: list technical committee members and contact info.]</p>
   </section>
 
   <!-- Discord -->
